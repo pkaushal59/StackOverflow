@@ -11,14 +11,11 @@ namespace Stackoverflow.Services
             subscribers = [];
         }
 
-        internal void Notify(Vote vote, string votedFor)
+        public void Notify(NotificationType notificationType, string content)
         {
-            string q = vote.QuestionId == 0 ? "Answer" : "Question";
-    
             foreach (var subscriber in subscribers)
             {
-                Console.WriteLine($"{q} is voted ");
-                Console.WriteLine($"{subscriber} is notified");
+                Console.WriteLine($"Notifying {subscriber} about {notificationType}: {content}");
             }
         }
 
@@ -31,5 +28,16 @@ namespace Stackoverflow.Services
         {
             subscribers.Remove(email);
         }
+        public void NotifyForAnswerAccepted(int answerId, int questionId)
+        {
+            string message = $"Answer {answerId} for Question {questionId} has been accepted.";
+            Notify(NotificationType.AnswerAccepted, message);
+        }
+    }
+    public enum NotificationType
+    {
+        QuestionVoted,
+        AnswerAccepted,
+        AnswerPosted,
     }
 }

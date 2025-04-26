@@ -13,9 +13,10 @@ namespace Stackoverflow.Services
             votes = [];
             _notificationService = notificationService;
         }
-        public void UpdateVotes(int up, int down, int questionId=0, int answerId=0)
+
+        public void UpdateVotes(int up, int down, int questionId = 0, int answerId = 0)
         {
-            var findVote = votes.Find(x => x.QuestionId == questionId 
+            var findVote = votes.Find(x => x.QuestionId == questionId
             && x.QuestionId != 0
             && x.AnswerId != 0
             || x.AnswerId == answerId);
@@ -35,8 +36,9 @@ namespace Stackoverflow.Services
                 };
                 votes.Add(findVote);
             }
-            _notificationService.Notify(findVote, votedFor: questionId==0 ? "Answer": "Question");
+            _notificationService.Notify(NotificationType.QuestionVoted, $"yes votes{findVote.Yes}, No votes: {findVote.No} for questionid: {findVote.QuestionId}");
         }
+
 
         internal Vote GetVotesonQuestion(int questionId)
         {

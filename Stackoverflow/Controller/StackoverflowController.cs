@@ -66,6 +66,7 @@ namespace Stackoverflow.Controller
         public void PostAnswer(string answer, int questionId, int userId)
         {
             _answerService.PostAnswer(answer, questionId, userId);
+            _notificationService.Notify(NotificationType.AnswerPosted, "Answer");
         }
 
         public void AddComment(int answerId, int userId, string comment)

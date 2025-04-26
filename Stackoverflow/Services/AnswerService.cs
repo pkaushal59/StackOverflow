@@ -18,6 +18,7 @@ namespace Stackoverflow.Services
         {
             var answer = answers[answerId];
             answer.IsAccepted = true;
+            _notificationService.NotifyForAnswerAccepted(answerId, answer.QuestionId);
         }
 
         public void PostAnswer(string answer, int questionId, int userId)
