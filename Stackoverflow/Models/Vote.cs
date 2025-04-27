@@ -8,7 +8,7 @@
         public int UserId { get; set; }
     }
 
-    public class QuestionVotes : IVote
+    public class QuestionVote : IVote
     {
         public int QuestionId { get; set; }
         public int ID => QuestionId;

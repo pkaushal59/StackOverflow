@@ -41,13 +41,14 @@ namespace Stackoverflow.Controller
         //Post
         public void UpdateVotesToQuestion(int up, int down, int questionId)
         {
-            _voteService.UpdateVotesForQuestions(up, down, questionId);
+            _voteService.UpdateVotes<QuestionVote>(up, down, questionId);
         }
 
         //Post
         public void UpdateVotesToAnswer(int up, int down, int answerId)
         {
-            _voteService.UpdateVotesForAnswers(up, down,answerId);
+            _voteService.UpdateVotes<AnswerVote>(up, down, answerId);
+
         }
 
         //Post
