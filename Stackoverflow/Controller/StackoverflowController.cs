@@ -41,13 +41,13 @@ namespace Stackoverflow.Controller
         //Post
         public void UpdateVotesToQuestion(int up, int down, int questionId)
         {
-            _voteService.UpdateVotes(up, down, questionId);
+            _voteService.UpdateVotesForQuestions(up, down, questionId);
         }
 
         //Post
         public void UpdateVotesToAnswer(int up, int down, int answerId)
         {
-            _voteService.UpdateVotes(up, down, questionId: 0, answerId);
+            _voteService.UpdateVotesForAnswers(up, down,answerId);
         }
 
         //Post
@@ -55,7 +55,7 @@ namespace Stackoverflow.Controller
         {
            var vote=  _voteService.GetVotesonQuestion(questionId);
             var question = _questionService.GetQuestion(questionId);
-            Console.WriteLine($"question: {question.Desc} has Up votes: {vote.Yes} and DownVotes: {vote.No}");
+            Console.WriteLine($"question: {question.Desc} has Up votes: {vote.Up} and DownVotes: {vote.Down}");
         }
 
         public void AcceptAnswer(int answerId)
@@ -81,7 +81,7 @@ namespace Stackoverflow.Controller
 
         public void SearchQuestionsByTag(string tag)
         {
-            var questions = _questionService.SearchQuestionsByTag(tag);
+            var questions = _searchService.SearchByTag(tag);
             Console.WriteLine(string.Join(", ", questions));
         }
 

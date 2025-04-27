@@ -41,5 +41,10 @@ namespace Stackoverflow.Services
             var result = questions.FindAll(x => tags.Contains(x.TagId));
             return result;
         }
+
+        public List<Question> SearchByKeyword(string keyword)
+        {
+            return questions.Where(q => q.Desc.Contains(keyword)).ToList();
+        }
     }
 }

@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 
 Console.WriteLine("Welcome to Stackoverflow");
 NotificationService notificationService = new();
-AnswerService answerService = new(notificationService);
-CommentService commentService = new();
-SearchService searchService = new();
 TagService tagService = new();
+AnswerService answerService = new(notificationService);
 QuestionService questionService = new(tagService, notificationService);
+CommentService commentService = new();
+SearchService searchService = new(questionService);
 VoteService voteService = new(notificationService);
 
 StackoverflowController stc = new(answerService, commentService, searchService,

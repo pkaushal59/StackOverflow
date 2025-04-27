@@ -1,10 +1,24 @@
 ﻿namespace Stackoverflow.Models
 {
-    public class Vote
+    public class IVote
     {
-        public int Yes { get; set; }
-        public int No { get; set; }
-        public int QuestionId{ get; set; }
-        public int AnswerId { get; set; }
+        public int Id { get; set; }
+        public int Up { get; set; }
+        public int Down { get; set; }
+        public int UserId { get; set; }
+    }
+
+    public class QuestionVotes : IVote
+    {
+        public int QuestionId { get; set; }
+        public int ID => QuestionId;
+
+    }
+
+    public class AnswerVote : IVote
+    {
+        public int AnswerVoteId { get; set; }
+        public int ID => AnswerVoteId;
+
     }
 }
